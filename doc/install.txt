@@ -1,0 +1,10 @@
+1. install rails 3 and other gems:
+
+sudo bundle install
+
+2. create mysql access from config/database.yml for development and test
+
+3.
+
+
+

@@ -1,0 +1,20 @@
+
+development:
+    adapter: mysql
+    database: ciklum_dev
+    username: ciklum
+    password: ciklum
+    host: localhost
+
+test:
+    adapter: mysql
+    database: ciklum_test
+    username: ciklum
+    password: ciklum
+    host: localhost
+
+production:
+  adapter: sqlite3
+  database: db/production.sqlite3
+  pool: 5
+  timeout: 5000
