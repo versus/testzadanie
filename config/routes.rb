@@ -1,8 +1,9 @@
 Ciklum::Application.routes.draw do
   resources :domains
 
-  root :to => "search#index"
+    root :to => "domains#index"
     match "/upload" => "domains#upload"
+    match "/search" => "domains#search"
     match "/about" => proc { |env| [200, {}, "Created by Valentin Nastenko <versus.ua@gmail.com>"] }
   
   # The priority is based upon order of creation:

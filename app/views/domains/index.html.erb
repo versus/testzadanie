@@ -1,15 +1,28 @@
-<h1>Listing domains</h1>
+<%if @domains_count%>
+<h1>Today <%= @domains_count%> domains name on database</h1>
+<%else%>
+<h1>Search for <%= session[:search]%></h1>
+<%end%>
+<%= flash[:warning] || flash[:notice] %>
 
-<table>
+<%= form_tag( { :action => 'search' } ) do%>
+  Domain name: <%= text_field( "form","search" ) %>
+  <%= submit_tag( "Search domain", :id=>'form_button' ) %>
+<img id="spinner" src="/images/load.gif" border="0" style="display:none">
+
+<% end %>
+<br/>
+<table cellspacing="2" cellpadding="2" border="1">
   <tr>
     <th>Hostname</th>
     <th>Pagerank</th>
     <th>Domainage</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th colspan="3">Administration</th>
   </tr>
-
+<tr>
+	<td colspan="3" align="right"><%= link_to "Upload new CSV file", '/upload'  %></td>
+	<td colspan="3" align="right"><%= link_to 'Add New Domain', new_domain_path %></td>
+</tr>
 <% @domains.each do |domain| %>
   <tr>
     <td><%= domain.hostname %></td>
@@ -23,5 +36,5 @@
 </table>
 
 <br />
+<%= will_paginate @domains %>
 
-<%= link_to 'New Domain', new_domain_path %>

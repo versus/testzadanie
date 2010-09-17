@@ -3,7 +3,8 @@ class DomainsController < ApplicationController
   # GET /domains
   # GET /domains.xml
   def index
-    @domains = Domain.all
+    @domains_count = Domain.all.count
+    @domains = Domain.list(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -86,7 +87,7 @@ class DomainsController < ApplicationController
       begin
         @parsed_file=CSV::Reader.parse(params[:form][:file], "\t")
         @parsed_file.each{|record|
-          new_dom = Domain.new
+          new_dom = Domain.where(:hostname=> record[0]).first || Domain.new
           new_dom.hostname = record[0]
           new_dom.pagerank = record[1].to_i
           new_dom.domainage = record[2] unless record[2] == "\N"
@@ -94,11 +95,22 @@ class DomainsController < ApplicationController
             new_dom.save!
           end
           }
-        render :text => params[:form][:file].original_filename
+        redirect_to(:action => "index", :notice => 'Domains was successfully uploaded.')
       rescue 
         render :action => "upload" 
   end
  end 
+ 
+ def search
+   begin
+     mysearch = params[:form][:search] 
+  rescue
+     mysearch = session[:search]
+  end
+  @domains = Domain.search( mysearch, params[:page])
+  session[:search] = mysearch
+  render :action => "index" 
+ end
   
   
 end
