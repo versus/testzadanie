@@ -66,3 +66,13 @@ div.field, div.actions {
 	  color: #000;
 	  text-align: center;
 }
+
+.even{background-color: #f0f0f0;
+
+} 
+.odd{background-color: #fff;
+}
+.adm{color: #fff; background-color:#fff;}
+
+tr:hover { color: #fff; background-color:#ccc; }
+

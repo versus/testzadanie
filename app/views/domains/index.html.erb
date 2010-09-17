@@ -5,36 +5,49 @@
 <%end%>
 <%= flash[:warning] || flash[:notice] %>
 
-<%= form_tag( { :action => 'search' } ) do%>
-  Domain name: <%= text_field( "form","search" ) %>
+<%= form_tag( { :action => 'search' } ) do %>
+  Domain name: <%= text_field( "form","search", :id=>'query' ) %>
   <%= submit_tag( "Search domain", :id=>'form_button' ) %>
-<img id="spinner" src="/images/load.gif" border="0" style="display:none">
-
 <% end %>
 <br/>
-<table cellspacing="2" cellpadding="2" border="1">
+<table cellspacing="2" cellpadding="2" border="0">
+  <tr>
+	<td colspan="3" align="right"><%= link_to "Upload new CSV file", '/upload'  %></td>
+	<td colspan="3" align="right"><%= link_to 'Add New Domain', new_domain_path %></td>
+</tr>
   <tr>
     <th>Hostname</th>
     <th>Pagerank</th>
     <th>Domainage</th>
     <th colspan="3">Administration</th>
   </tr>
-<tr>
-	<td colspan="3" align="right"><%= link_to "Upload new CSV file", '/upload'  %></td>
-	<td colspan="3" align="right"><%= link_to 'Add New Domain', new_domain_path %></td>
-</tr>
+
 <% @domains.each do |domain| %>
-  <tr>
+  <tr class="<%= cycle("even", "odd") %>">
     <td><%= domain.hostname %></td>
-    <td><%= domain.pagerank %></td>
-    <td><%= domain.domainage %></td>
-    <td><%= link_to 'Show', domain %></td>
-    <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
-    <td><%= link_to 'Destroy', domain, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td align="center"><%= domain.pagerank %></td>
+    <td >
+      <%unless domain.domainage.nil? %>
+        <%= domain.domainage %>
+      <%else%>
+        N/A
+      <%end%>
+    </td>
+    <td class="adm"><%= link_to 'Show', domain %></td>
+    <td class="adm"><%= link_to 'Edit', edit_domain_path(domain) %></td>
+    <td class="adm"><%= link_to 'Destroy', domain, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 <%= will_paginate @domains %>
+
+<script>
+  $(document).ready(function(){   
+  
+
+});
+
+</script>
 

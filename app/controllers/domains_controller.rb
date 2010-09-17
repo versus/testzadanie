@@ -93,9 +93,11 @@ class DomainsController < ApplicationController
           new_dom.domainage = record[2] unless record[2] == "\N"
           if new_dom.valid?
             new_dom.save!
+          else
+            flash[:notice] = "#{record[0]} is not added" 
           end
           }
-        redirect_to(:action => "index", :notice => 'Domains was successfully uploaded.')
+        redirect_to(:action => "index", flash[:notice] => 'Domains was successfully uploaded.')
       rescue 
         render :action => "upload" 
   end
