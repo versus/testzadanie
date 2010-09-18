@@ -1,5 +1,5 @@
 <%if @domains_count%>
-<h1>Today <%= @domains_count%> domains name on database</h1>
+<h3>We have the <%= @domains_count%> domain names in database</h3>
 <%else%>
 <h1>Search for <%= session[:search]%></h1>
 <%end%>
@@ -10,7 +10,7 @@
   <%= submit_tag( "Search domain", :id=>'form_button' ) %>
 <% end %>
 <br/>
-<table cellspacing="2" cellpadding="2" border="0">
+<table cellspacing="2" cellpadding="2" border="0" align="center">
   <tr>
 	<td colspan="3" align="right"><%= link_to "Upload new CSV file", '/upload'  %></td>
 	<td colspan="3" align="right"><%= link_to 'Add New Domain', new_domain_path %></td>

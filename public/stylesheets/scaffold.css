@@ -1,4 +1,4 @@
-body { background-color: #fff; color: #333; }
+body { background-color: #6699CC; color: #333; }
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -67,12 +67,23 @@ div.field, div.actions {
 	  text-align: center;
 }
 
-.even{background-color: #f0f0f0;
+.even{background-color: #A9D0F5;
 
 } 
 .odd{background-color: #fff;
 }
 .adm{color: #fff; background-color:#fff;}
 
-tr:hover { color: #fff; background-color:#ccc; }
+tr:hover { color: #000; background-color: #0080FF;}
 
+.content{
+	  width: 800px;
+	  border: 2px solid #0B3861;
+	  padding: 7px;
+	  margin-left:200px;
+	  margin-top: 10px;
+	  background-color: #fff;
+	  color: #000;
+	  text-align: center;	
+	
+}
