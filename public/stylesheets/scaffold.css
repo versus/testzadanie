@@ -87,3 +87,11 @@ tr:hover { color: #000; background-color: #0080FF;}
 	  text-align: center;	
 	
 }
+.ac_results{
+	border: 1px solid #0B3861;
+	background-color: #fff;
+	color: #000;
+	z-index:999;
+	cursor: hand;
+	cursor: pointer;
+}

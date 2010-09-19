@@ -6,10 +6,9 @@ class Domain < ActiveRecord::Base
     paginate :per_page => 30, :page => page, :order => 'hostname'
   end
   
-  def self.search(search, page)
+  def self.search(search, page=nil)
     paginate :per_page => 30, :page => page,
              :conditions => ['hostname like ?', "%#{search}%"],
              :order => 'pagerank desc'
   end
-  
 end

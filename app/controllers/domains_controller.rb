@@ -113,6 +113,16 @@ class DomainsController < ApplicationController
   session[:search] = mysearch
   render :action => "index" 
  end
+ 
+ def autocomplete
+  @domains = Domain.where('hostname like ?', "%#{params[:q]}%").all()
+  respond_to do |format|
+    format.json {render :json => @domains}
+    format.html {render :layout => false}
+    format.xml  { render :xml => @domains }
+  end
+ end
+ 
   
   
 end

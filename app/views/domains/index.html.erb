@@ -6,7 +6,7 @@
 <%= flash[:warning] || flash[:notice] %>
 
 <%= form_tag( { :action => 'search' } ) do %>
-  Domain name: <%= text_field( "form","search", :id=>'query' ) %>
+  Domain name: <%= text_field( "form","search", :id=>'query' , :size=>'50') %>
   <%= submit_tag( "Search domain", :id=>'form_button' ) %>
 <% end %>
 <br/>
@@ -43,11 +43,17 @@
 <br />
 <%= will_paginate @domains %>
 
-<script>
-  $(document).ready(function(){   
-  
-
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#query").autocomplete("/autocomplete", {
+	delay:10,
+	minChars:2,
+	matchSubset:1,
+	autoFill:true,
+	maxItemsToShow:10
+  });
 });
 
 </script>
+
 
