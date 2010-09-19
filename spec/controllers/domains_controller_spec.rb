@@ -122,4 +122,7 @@ describe DomainsController do
     end
   end
 
+  descripbe "UPLOAD CSV file"
+    it  "test upload domains from csv "
+      post '/upload' :file => TestUploadedFile("/Users/user/project/ciklum/tmp/test_short.csv")
 end

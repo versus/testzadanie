@@ -1,18 +1,26 @@
 <%if @domains_count%>
-<h3>We have the <%= @domains_count%> domain names in database</h3>
+<h3>Found <%= @domains_count%> domain names in the database  </h3>
 <%else%>
 <h1>Search for <%= session[:search]%></h1>
 <%end%>
+
 <%= flash[:warning] || flash[:notice] %>
 
 <%= form_tag( { :action => 'search' } ) do %>
-  Domain name: <%= text_field( "form","search", :id=>'query' , :size=>'50') %>
+  Domain name: <%= text_field( "form","search", :id=>'query' , :size=>'60') %>
   <%= submit_tag( "Search domain", :id=>'form_button' ) %>
 <% end %>
 <br/>
-<table cellspacing="2" cellpadding="2" border="0" align="center">
+<table cellspacing="2" cellpadding="2" border="0" align="center" class="domain-table">
   <tr>
-	<td colspan="3" align="right"><%= link_to "Upload new CSV file", '/upload'  %></td>
+	<td colspan="3" align="right">
+		  <%= form_tag(  { :action => 'upload' }, :multipart => true, :method=>'post', :id=>'form_upload', :onsubmit=>'return upl()') do -%>
+		  Upload file: <%= file_field( "form", "file" ) -%>
+		  <%= submit_tag( "Upload file") -%>
+		<img id="spinner" src="/images/load.gif" border="0"  style="display:none">
+		<% end %>
+		</div>
+		</td>
 	<td colspan="3" align="right"><%= link_to 'Add New Domain', new_domain_path %></td>
 </tr>
   <tr>
@@ -24,7 +32,7 @@
 
 <% @domains.each do |domain| %>
   <tr class="<%= cycle("even", "odd") %>">
-    <td><%= domain.hostname %></td>
+    <td><%= link_to domain.hostname, domain %></td>
     <td align="center"><%= domain.pagerank %></td>
     <td >
       <%unless domain.domainage.nil? %>
@@ -49,11 +57,14 @@ $(document).ready(function(){
 	delay:10,
 	minChars:2,
 	matchSubset:1,
-	autoFill:true,
-	maxItemsToShow:10
+	autoFill:false,
+	maxItemsToShow:20
   });
 });
-
+function upl(){
+    $('#spinner').show();
+    return true;
+}
 </script>
 
 

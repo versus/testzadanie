@@ -67,14 +67,16 @@ div.field, div.actions {
 	  text-align: center;
 }
 
-.even{background-color: #A9D0F5;
+.even{background-color: #A9D0F5;} 
+.even:hover {color: #000; background-color: #0080FF;}
+.odd {background-color: #fff; }
+.odd:hover {color: #000; background-color: #0080FF;}
 
-} 
-.odd{background-color: #fff;
+.domain-table{
+	border: 1px solid #0B3861;
 }
-.adm{color: #fff; background-color:#fff;}
 
-tr:hover { color: #000; background-color: #0080FF;}
+
 
 .content{
 	  width: 800px;
