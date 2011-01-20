@@ -4,7 +4,16 @@ sudo bundle install
 
 2. create mysql access from config/database.yml for development and test
 
-3.
+3. Create migration
+
+4. rails server
+
+5. Open browser http://127.0.0.1:3000
+
+6. Upload file with domain names
+
+7. test
+
 
 
 
